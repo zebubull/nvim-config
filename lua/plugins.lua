@@ -70,7 +70,7 @@ local plugins = {
         dependencies = { 'nvim-tree/nvim-web-devicons' },
         config = function()
             require('nvim-tree').setup({
-                filters = { custom = { '.git', '.zig-cache' }}
+                filters = { custom = { '.git', '.zig-cache' }, exclude = { '.gitignore'} }
             })
         end,
         keys = require('keymaps.tree'),
