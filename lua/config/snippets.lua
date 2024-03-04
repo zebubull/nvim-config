@@ -21,6 +21,9 @@ cmp.setup({
         ["<C-e>"] = cmp.mapping.abort(),
         ["<CR>"] = cmp.mapping.confirm({ select = true }),
     }),
+    window = {
+        completion = cmp.config.window.bordered(),
+    },
     sources = cmp.config.sources({
         { name = "nvim_lsp" }, -- lsp
         { name = "luasnip" }, -- snippets

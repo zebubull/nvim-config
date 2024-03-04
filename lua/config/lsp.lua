@@ -1,17 +1,17 @@
--- local mason = require('mason')
--- local mason_lspconfig = require('mason-lspconfig')
+local mason = require('mason')
+local mason_lspconfig = require('mason-lspconfig')
 
--- mason.setup()
+mason.setup()
 
--- mason_lspconfig.setup({
---     ensure_installed = {
---         'lua_ls',
---         'clangd',
---         'rust-analyzer',
---         'jdtls',
---         'zls'
---     }
--- })
+mason_lspconfig.setup({
+    ensure_installed = {
+        'lua_ls',
+        'clangd',
+        'rust_analyzer',
+        'jdtls',
+        'zls'
+    }
+})
 
 local lspsaga = require('lspsaga')
 
