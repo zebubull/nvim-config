@@ -70,7 +70,7 @@ local plugins = {
         dependencies = { 'nvim-tree/nvim-web-devicons' },
         config = function()
             require('nvim-tree').setup({
-                filters = { custom = { '.git', '.zig-cache' }, exclude = { '.gitignore'} }
+                filters = { custom = { '\\.git', '.zig-cache' } }
             })
         end,
         keys = require('keymaps.tree'),
@@ -88,7 +88,7 @@ local plugins = {
             local configs = require('nvim-treesitter.configs')
 
             configs.setup({
-                ensure_installed = { 'c', 'lua', 'rust', 'zig', 'java', 'fish'},
+                ensure_installed = { 'c', 'lua', 'rust', 'zig', 'java', 'fish', 'markdown', 'markdown_inline' },
                 sync_install = false,
                 highlight = { enable = true },
                 indent = { enable = true },
@@ -126,7 +126,7 @@ local plugins = {
             'williamboman/mason.nvim',
             'williamboman/mason-lspconfig.nvim',
         },
-        event = { 'BufReadPre', 'BufNewFile '},
+        event = { 'BufReadPre', 'BufNewFile'},
         cmd = {
             'LspInfo',
             'LspStart',
@@ -137,6 +137,14 @@ local plugins = {
         config = function()
             require('config.lsp')
         end,
+    },
+    {
+        'lewis6991/gitsigns.nvim',
+        event = { 'BufReadPre', 'BufNewFile' },
+        keys = require('keymaps.git'),
+        config = function()
+            require('gitsigns').setup()
+        end
     },
 }
 
