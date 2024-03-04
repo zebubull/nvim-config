@@ -69,7 +69,9 @@ local plugins = {
         version = '*',
         dependencies = { 'nvim-tree/nvim-web-devicons' },
         config = function()
-            require('nvim-tree').setup()
+            require('nvim-tree').setup({
+                filters = { custom = { '.git', '.zig-cache' }}
+            })
         end,
         keys = require('keymaps.tree'),
         lazy = false,
