@@ -110,6 +110,7 @@ local plugins = {
             'saadparwaiz1/cmp_luasnip',
             'onsails/lspkind.nvim',
             'L3MON4D3/LuaSnip',
+            'rafamadriz/friendly-snippets',
         },
         event = 'InsertEnter',
         config = function()
@@ -123,15 +124,15 @@ local plugins = {
                 'glepnir/lspsaga.nvim',
                 branch = 'main',
             },
-            'williamboman/mason.nvim',
-            'williamboman/mason-lspconfig.nvim',
+            -- 'williamboman/mason.nvim',
+            -- 'williamboman/mason-lspconfig.nvim',
         },
         event = { 'BufReadPre', 'BufNewFile'},
         cmd = {
             'LspInfo',
             'LspStart',
             'LspRestart',
-            'Mason',
+            -- 'Mason',
             'LspLog',
         },
         config = function()
@@ -146,6 +147,39 @@ local plugins = {
             require('gitsigns').setup()
         end
     },
+    {
+        'mfussenegger/nvim-jdtls',
+        ft = 'java',
+        config = function()
+            vim.api.nvim_create_autocmd('FileType', {
+                pattern = 'java',
+                callback = function()
+                    require('jdtls').start_or_attach({
+                        cmd = {"jdt-language-server", "-data", "/home/zebubull/.jdtls/data/"},
+                        root_dir = vim.fs.dirname(vim.fs.find({'gradlew', '.git', 'mvnw'}, { upward = true })[1]),
+                    })
+                end
+            })
+        end
+    },
+    {
+        'akinsho/flutter-tools.nvim',
+        requires = {
+            'nvim-lua/plenary.nvim',
+            'stevearc/dressing.nvim',
+        },
+        keys = require('keymaps.flutter'),
+        cmd = {
+            'FlutterRun',
+            'FlutterReload',
+            'FlutterRestart',
+        },
+        config = true,
+    },
+    {
+        'stevearc/dressing.nvim',
+        opts = {},
+    }
 }
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

@@ -1,4 +1,4 @@
-local mason = require('mason')
+--[[ local mason = require('mason')
 local mason_lspconfig = require('mason-lspconfig')
 
 mason.setup()
@@ -11,7 +11,7 @@ mason_lspconfig.setup({
         'jdtls',
         'zls'
     }
-})
+}) ]]
 
 local lspsaga = require('lspsaga')
 
@@ -26,7 +26,8 @@ local cmp_nvim_lsp = require('cmp_nvim_lsp')
 
 local keymap = vim.keymap
 
-local on_attach = function(client, bufnr)
+local on_attach = function(ev)
+    local bufnr = ev.buf
     local opts = { noremap = true, silent = true, buffer = bufnr }
 
     keymap.set("n", "gf", "<cmd>Lspsaga lsp_finder<CR>", opts)
@@ -43,37 +44,36 @@ local on_attach = function(client, bufnr)
     keymap.set("n", "<leader>o", "<cmd>LSOutlineToggle<CR>", opts)
 end
 
+vim.api.nvim_create_autocmd('LspAttach', {
+    group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+    callback = on_attach,
+})
+
 -- used for autocompletion
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
 lspconfig["clangd"].setup({
     capabilities = capabilities,
-    on_attach = on_attach,
 })
 
 lspconfig["rust_analyzer"].setup({
     capabilities = capabilities,
-    on_attach = on_attach,
 })
 
 lspconfig["zls"].setup({
     capabilities = capabilities,
-    on_attach = on_attach,
-})
-
-lspconfig["jdtls"].setup({
-    capabilities = capabilities,
-    on_attach = on_attach,
 })
 
 lspconfig["nil_ls"].setup({
     capabilities = capabilities,
-    on_attach = on_attach,
+})
+
+lspconfig["dartls"].setup({
+    capabilities = capabilities,
 })
 
 lspconfig["lua_ls"].setup({
     capabilities = capabilities,
-    on_attach = on_attach,
     settings = {
         Lua = {
             diagnostics = {
