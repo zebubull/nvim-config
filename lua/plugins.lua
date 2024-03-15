@@ -88,7 +88,7 @@ local plugins = {
             local configs = require('nvim-treesitter.configs')
 
             configs.setup({
-                ensure_installed = { 'c', 'lua', 'rust', 'zig', 'java', 'fish', 'markdown', 'markdown_inline' },
+                ensure_installed = { 'c', 'lua', 'rust', 'zig', 'java', 'fish', 'markdown', 'markdown_inline', 'dart' },
                 sync_install = false,
                 highlight = { enable = true },
                 indent = { enable = true },
