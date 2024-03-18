@@ -3,9 +3,10 @@ return {
         "<C-\\>",
         "<cmd>ToggleTerm size=20 dir=git_dir direction=horizontal<CR>",
         desc = "Open terminal",
+        mode = "n",
     },
     {
-        "<Esc><Esc>",
+        "<C-\\>",
         "<C-\\><C-n>",
         desc = "Exit terminal",
         mode = "t",
