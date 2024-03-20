@@ -41,7 +41,6 @@ local on_attach = function(ev)
     keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)
     keymap.set("n", "[D", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
     keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
-    keymap.set("n", "<leader>o", "<cmd>LSOutlineToggle<CR>", opts)
 end
 
 vim.api.nvim_create_autocmd('LspAttach', {

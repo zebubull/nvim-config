@@ -36,3 +36,12 @@ opt.iskeyword:append("-")
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+
+opt.showtabline = 2
+
+vim.api.nvim_create_autocmd('TermOpen', {
+    callback = function(args)
+        vim.opt_local.number = false
+        vim.opt_local.relativenumber = false
+    end
+})

@@ -14,27 +14,21 @@ local plugins = {
             require('config.lualine')
         end,
     },
-    {
-        'romgrk/barbar.nvim',
-        dependencies = {
-          'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
-          'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
-        },
-        lazy = false,
-        init = function() vim.g.barbar_auto_setup = false end,
-        opts = {
-            animation = true,
-            insert_at_start = true,
-        },
-        keys = require('keymaps.barbar'),
-        version = '^1.0.0', -- optional: only update when a new 1.x version is released
-    },
-    {
-        'akinsho/toggleterm.nvim',
-        version = "*",
-        config = true,
-        keys = require('keymaps.toggleterm'),
-    },
+    -- {
+    --     'romgrk/barbar.nvim',
+    --     dependencies = {
+    --       'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
+    --       'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
+    --     },
+    --     lazy = false,
+    --     init = function() vim.g.barbar_auto_setup = false end,
+    --     opts = {
+    --         animation = true,
+    --         insert_at_start = true,
+    --     },
+    --     keys = require('keymaps.barbar'),
+    --     version = '^1.0.0', -- optional: only update when a new 1.x version is released
+    -- },
     {
         'numToStr/Comment.nvim',
         config = function()
@@ -64,18 +58,18 @@ local plugins = {
             wk.setup({key_labels = { ['<leader>'] = 'SPC'}})
         end,
     },
-    {
-        'nvim-tree/nvim-tree.lua',
-        version = '*',
-        dependencies = { 'nvim-tree/nvim-web-devicons' },
-        config = function()
-            require('nvim-tree').setup({
-                filters = { custom = { '\\.git', '.zig-cache' } }
-            })
-        end,
-        keys = require('keymaps.tree'),
-        lazy = false,
-    },
+    -- {
+    --     'nvim-tree/nvim-tree.lua',
+    --     version = '*',
+    --     dependencies = { 'nvim-tree/nvim-web-devicons' },
+    --     config = function()
+    --         require('nvim-tree').setup({
+    --             filters = { custom = { '\\.git', '.zig-cache' } }
+    --         })
+    --     end,
+    --     keys = require('keymaps.tree'),
+    --     lazy = false,
+    -- },
     {
         'windwp/nvim-autopairs',
         event = "InsertEnter",
@@ -99,7 +93,23 @@ local plugins = {
         'nvim-telescope/telescope.nvim',
         tag = '0.1.5',
         dependencies = { 'nvim-lua/plenary.nvim' },
-        keys = require('keymaps.telescope')
+        keys = require('keymaps.telescope'),
+        init = function()
+            require('config.telescope')
+        end
+    },
+    {
+        "nvim-telescope/telescope-file-browser.nvim",
+        dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+        keys = require('keymaps.telescope_file_browser')
+    },
+    {
+        'ThePrimeagen/harpoon',
+        dependencies = { "nvim-lua/plenary.nvim"},
+        keys = require('keymaps.harpoon'),
+        opts = {
+            tabline = false,
+        }
     },
     {
         'hrsh7th/nvim-cmp',
