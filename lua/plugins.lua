@@ -189,6 +189,11 @@ local plugins = {
     {
         'stevearc/dressing.nvim',
         opts = {},
+    },
+    {
+        'mrjones2014/smart-splits.nvim',
+        lazy = false,
+        keys = require('keymaps.smart_splits'),
     }
 }
 
