@@ -18,8 +18,8 @@ cmp.setup({
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(),
-        ["<C-q>"] = cmp.mapping.abort(),
-        ["<C-e>"] = cmp.mapping.confirm({ select = false }),
+        ["<C-e>"] = cmp.mapping.abort(),
+        ["<CR>"] = cmp.mapping.confirm({ select = false }),
     }),
     window = {
         completion = cmp.config.window.bordered(),
